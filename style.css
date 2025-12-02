@@ -1,0 +1,244 @@
+/* 1. RESET & BASICS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling when clicking links */
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #1a1a1a; /* Dark Grey Background */
+    color: #e0e0e0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 2. TOP BAR STYLING (Replaces Sidebar) */
+.top-bar {
+    width: 100%;
+    height: 70px; /* Fixed height */
+    background-color: #121212;
+    position: fixed; /* Sticks to top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensures it stays on top of content */
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Name and Title */
+.profile-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.profile-header h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.job-title {
+    font-size: 0.9rem;
+    color: #888;
+    font-weight: 400;
+}
+
+/* 3. NAVIGATION LINKS (Horizontal) */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px; /* Space between links */
+    height: 100%;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #bbbbbb;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #4facfe; /* Tech Blue Accent */
+}
+
+/* 4. DROPDOWN MENU LOGIC */
+.dropdown-container {
+    position: relative; /* Parent needed for absolute positioning */
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 70px; /* Pushes it below the header height */
+    left: -15px; /* Aligns slightly left */
+    background-color: #121212;
+    border: 1px solid #333;
+    border-top: none;
+    min-width: 180px;
+    list-style: none;
+    padding: 10px 0;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+
+/* The Hover Effect */
+.dropdown-container:hover .dropdown-menu {
+    display: block; /* Show on hover */
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 20px;
+    color: #888;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #222;
+    color: #fff;
+}
+
+/* 5. SOCIAL ICONS */
+.social-links a {
+    color: #888;
+    font-size: 1.1rem;
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #fff;
+}
+
+/* 6. CONTENT AREA (Adjusted for Top Bar) */
+.page-container {
+    display: block;
+    padding-top: 100px; /* CRITICAL: Pushes content down so Header doesn't cover it */
+}
+
+.content {
+    margin: 0 auto; /* Centers the content */
+    max-width: 900px;
+    padding: 0 20px 80px 20px;
+}
+
+section {
+    margin-bottom: 100px;
+}
+
+h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+h4 {
+    font-size: 1.2rem;
+    color: #4facfe;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* 7. VIDEO EMBEDS */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #000;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.caption {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+    font-style: italic;
+}
+
+/* 8. MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    .top-bar {
+        height: auto;
+        flex-direction: column;
+        padding: 15px 20px;
+        position: relative; /* Unstick on mobile if content is long */
+    }
+
+    .page-container {
+        padding-top: 20px; /* Remove the gap since header isn't fixed anymore */
+    }
+
+    .profile-header {
+        margin-bottom: 15px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    /* Dropdown behaves differently on mobile */
+    .dropdown-menu {
+        position: static; /* Stacks normally */
+        display: block; /* Always show submenu on mobile */
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        padding-left: 20px;
+        border-left: 1px solid #333;
+        margin-top: 10px;
+    }
+    
+    .menu-label {
+        display: none; /* Hide the word 'Experience' and just show links */
+    }
+
+    .project-header {
+        flex-direction: column;
+    }
+}
